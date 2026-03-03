@@ -3,61 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autorização de Crachá</title>
+    <title>Autorização de Crachá SAH</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
 </head>
 <body>
 
-    <div class="no-print" id="form-container">
-        <h2>Gerador de Autorização de Crachá</h2>
-        <form id="cracha-form">
-            <label for="matricula">Matrícula:</label>
-            <input type="text" id="matricula" required placeholder="Ex: 021403">
+    <div class="container no-print" id="form-container">
+        <div class="form-card">
+            <h2>Gerador de Autorização</h2>
+            <p class="subtitle">Preencha os dados do funcionário</p>
+            <form id="cracha-form">
+                <div class="input-group">
+                    <label for="matricula">Matrícula</label>
+                    <input type="text" id="matricula" required placeholder="Ex: 506990">
+                </div>
 
-            <label for="nome">Nome do Funcionário:</label>
-            <input type="text" id="nome" required placeholder="Ex: TAINA BARROS VENTURA">
+                <div class="input-group">
+                    <label for="nome">Nome do Funcionário</label>
+                    <input type="text" id="nome" required placeholder="Ex: LEONARDO JOSÉ OLIVEIRA DE SOUZA">
+                </div>
 
-            <label for="funcao">Função:</label>
-            <input type="text" id="funcao" required placeholder="Ex: MEDICA PEDIATRA">
+                <div class="input-group">
+                    <label for="funcao">Função</label>
+                    <input type="text" id="funcao" required placeholder="Ex: AUXILIAR ADMINISTRATIVO">
+                </div>
 
-            <label for="via">Via do Crachá:</label>
-            <select id="via">
-                <option value="1ª via">1ª via</option>
-                <option value="2ª via">2ª via</option>
-            </select>
+                <div class="input-group">
+                    <label for="via">Via do Crachá</label>
+                    <select id="via">
+                        <option value="1ª via">1ª via</option>
+                        <option value="2ª via">2ª via</option>
+                    </select>
+                </div>
 
-            <button type="submit">Gerar Documento e Imprimir</button>
-        </form>
+                <button type="submit" class="btn-primary">Gerar Documento</button>
+            </form>
+        </div>
     </div>
 
     <div id="print-area">
-        <div class="header">
-            <p id="data-atual">Volta Redonda, DD de Mês de YYYY.</p>
-            <br>
-            <h3 id="titulo-documento">Autorização para Confecção de Crachás 1ª via.</h3>
+        <div class="acoes-documento no-print">
+            <button id="btn-voltar" class="btn-secondary">⬅ Voltar e Editar</button>
+            <button id="btn-imprimir" class="btn-primary">🖨️ Imprimir Agora</button>
         </div>
 
-        <table class="tabela-documento">
-            <thead>
-                <tr>
-                    <th>Matricula</th>
-                    <th>Nome</th>
-                    <th>FUNCAO</th>
-                    <th>Assinatura</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td id="out-matricula"></td>
-                    <td id="out-nome"></td>
-                    <td id="out-funcao"></td>
-                    <td class="linha-assinatura"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="document-content">
+            <div class="header-img-container">
+                <img src="cabecalho.png" alt="Cabeçalho Hospital e Prefeitura">
+            </div>
 
-        <div class="footer">
-            <p>Endereço: Rua General Nelson de Melo nº. 145 - São Geraldo - Volta Redonda /RJ</p>
+            <div class="header-text">
+                <p id="data-atual">Volta Redonda, DD de Mês de YYYY.</p>
+                <h3>Autorização para Confecção de Crachás <span id="out-via">1ª via</span>.</h3>
+            </div>
+
+            <table class="tabela-documento">
+                <thead>
+                    <tr>
+                        <th>Matricula</th>
+                        <th>Nome</th>
+                        <th>FUNCAO</th>
+                        <th>Assinatura</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="out-matricula"></td>
+                        <td id="out-nome"></td>
+                        <td id="out-funcao"></td>
+                        <td class="linha-assinatura"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="footer">
+                <p>Endereço: Rua General Nelson de Melo n. 145 - São Geraldo - Volta Redonda /RJ</p>
+            </div>
         </div>
     </div>
 

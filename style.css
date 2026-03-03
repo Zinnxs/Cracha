@@ -1,122 +1,219 @@
-/* Estilos Gerais (Tela) */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --bg-color: #eef2f5;
+    --text-color: #333;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     margin: 0;
+    padding: 0;
+}
+
+/* --- ESTILOS DO FORMULÁRIO --- */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
+    box-sizing: border-box;
 }
 
-#form-container {
-    max-width: 500px;
-    margin: 0 auto;
+.form-card {
     background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 450px;
 }
 
-h2 {
+.form-card h2 {
+    margin: 0 0 5px 0;
+    color: var(--primary-color);
     text-align: center;
-    color: #2c3e50;
 }
 
-form {
+.subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.input-group {
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
 }
 
-label {
-    font-weight: bold;
+.input-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+    font-size: 14px;
 }
 
-input, select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    text-transform: uppercase; /* Força maiúsculas no input igual ao modelo */
+.input-group input, .input-group select {
+    padding: 12px;
+    border: 1px solid #dcdde1;
+    border-radius: 6px;
+    font-size: 15px;
+    text-transform: uppercase;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: var(--secondary-color);
+    outline: none;
 }
 
 button {
-    padding: 12px;
-    background-color: #3498db;
-    color: white;
+    width: 100%;
+    padding: 14px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 
-button:hover {
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-primary:hover {
     background-color: #2980b9;
 }
 
-/* Oculta a área de impressão na tela normal */
-#print-area {
-    display: none;
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+    margin-bottom: 10px;
 }
 
-/* Estilos Específicos para a Impressora */
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+/* --- ESTILOS DA TELA DO DOCUMENTO --- */
+#print-area {
+    display: none;
+    padding: 20px;
+}
+
+.acoes-documento {
+    max-width: 210mm;
+    margin: 0 auto 20px auto;
+    display: flex;
+    gap: 10px;
+}
+
+.document-content {
+    background: #fff;
+    max-width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 20mm;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    font-family: "Times New Roman", Times, serif;
+    color: #000;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.header-img-container {
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.header-img-container img {
+    width: 100%;
+    max-height: 120px;
+    object-fit: contain;
+}
+
+.header-text {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.header-text p {
+    text-align: left;
+    margin: 0 0 20px 0;
+    font-size: 12pt;
+}
+
+.header-text h3 {
+    font-size: 14pt;
+    text-decoration: underline;
+    margin: 0;
+}
+
+.tabela-documento {
+    width: 100%;
+    margin: 0 auto 50px auto;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.tabela-documento th, .tabela-documento td {
+    border: 1px solid #000;
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 12pt;
+    word-wrap: break-word;
+}
+
+.linha-assinatura {
+    height: 40px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 20mm;
+    left: 20mm;
+    right: 20mm;
+    text-align: left;
+    border-top: 1px solid #000;
+    padding-top: 10px;
+    font-size: 15pt;
+}
+
+/* --- ESTILOS EXCLUSIVOS PARA A IMPRESSORA --- */
 @media print {
-    /* Esconde o formulário, cor de fundo, etc. */
     body {
-        background-color: transparent;
+        background-color: white;
+        margin: 0;
         padding: 0;
     }
     .no-print {
         display: none !important;
     }
-
-    /* Mostra e formata o documento */
     #print-area {
+        padding: 0;
         display: block;
-        font-family: "Times New Roman", Times, serif;
-        font-size: 12pt;
-        width: 100%;
     }
-
-    .header {
-        text-align: center;
-        margin-bottom: 50px;
-    }
-
-    .header p {
-        text-align: left;
+    .document-content {
+        box-shadow: none;
         margin: 0;
-    }
-
-    .header h3 {
-        font-size: 14pt;
-        text-decoration: underline;
-    }
-
-    .tabela-documento {
+        padding: 0;
         width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 50px;
+        max-width: none;
+        min-height: auto;
     }
-
-    .tabela-documento th, .tabela-documento td {
-        border: 1px solid #000;
-        padding: 15px 10px;
-        text-align: center;
-    }
-
-    .linha-assinatura {
-        min-width: 150px; /* Garante espaço para a pessoa assinar */
-    }
-
     .footer {
         position: fixed;
-        bottom: 30px;
-        width: 100%;
-        text-align: left;
-        border-top: 1px solid #000;
-        padding-top: 10px;
-        font-size: 10pt;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 }
